@@ -176,8 +176,6 @@ function PhoneBookModel() {
     }
 }
 
-ko.applyBindings(new PhoneBookModel());
-
 function openDeleteDialog(title, content, onOk, onCancel) {
     $(".delete-dialog").text(content).dialog({
         autoOpen: false,
@@ -215,3 +213,16 @@ function openAlert(title, content, onOk) {
     });
     $(".alert").dialog("open");
 }
+
+$(document).ready(function () {
+
+    $.ajax({
+        type: "GET",
+        url: "/phonebook/get/all",
+        success: function(msg){
+            alert( "Прибыли данные: " + msg );
+        }
+    });
+
+    ko.applyBindings(new PhoneBookModel());
+});
