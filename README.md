@@ -1,29 +1,16 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Это проект - телефонная книга, реализованная на следующих технологиях
 
-### What is this repository for? ###
+клиентская часть: html, css, js
+серверная часть: servlets + tomcat
+БД: оперативная память, уничтожается при выключаении проекта
+сборка: средствами идеи - артифактами
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Что умеет делать проет:
+отображать сущетсвующие контакты
+добавлять новые контакты
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Что нужно добавить в проект:
+удаление контакта
+пометить контактакт как важный
