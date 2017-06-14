@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" build-on-make="true" name="phonebook">
-    <output-path>$PROJECT_DIR$/tomcat/webapps/phonebook</output-path>
+    <output-path>$PROJECT_DIR$/out/phonebook</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
