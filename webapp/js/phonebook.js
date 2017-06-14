@@ -215,14 +215,15 @@ function openAlert(title, content, onOk) {
 }
 
 $(document).ready(function () {
+    var phoneBookModel = new PhoneBookModel();
+    ko.applyBindings();
 
     $.ajax({
         type: "GET",
         url: "/phonebook/get/all",
         success: function(msg){
             alert( "Прибыли данные: " + msg );
+            phoneBookModel.rows($.parseJSON(msg));
         }
     });
-
-    ko.applyBindings(new PhoneBookModel());
 });

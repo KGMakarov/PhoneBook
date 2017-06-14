@@ -8,17 +8,15 @@ import java.io.IOException;
 import java.util.List;
 
 public class PhoneBookServlet extends HttpServlet {
-    private PhoneBookService phoneBookService = PhoneBook.phoneBookService;
+
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-     /*   List<Contact> contactList = phoneBookService.getAllContacts();
-        String contactListJson = phoneBookService.convert(contactList);*/
-        resp.getOutputStream().print("Hello get");
-}
-
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       /* List<Contact> contactList = phoneBookService.getAllContacts();
-        String contactListJson = phoneBookService.convert(contactList);*/
-        resp.getOutputStream().print("Hello get");
+        try {
+            PhoneBookService phoneBookService = PhoneBook.phoneBookService;
+            List<Contact> contactList = phoneBookService.getAllContacts();
+            resp.getOutputStream().print(phoneBookService.convert(contactList));
+        } catch (Exception e) {
+            System.out.println("error in PhoneBookServlet GET: " + e);
+        }
     }
 }
