@@ -1,0 +1,90 @@
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.78
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          May 10 2017 15:02:19 UTC
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.78.0
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Windows 7
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            6.1
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          amd64
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             C:\Program Files\Java\jre7
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.7.0_80-b15
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         C:/Project/infra/tomcat
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         C:/Project/infra/tomcat
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=C:/Project/infra/tomcat/conf/logging.properties
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.endorsed.dirs=C:/Project/infra/tomcat/endorsed
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=C:/Project/infra/tomcat
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=C:/Project/infra/tomcat
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=C:/Project/infra/tomcat/temp
+θών 14, 2017 4:14:15 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: C:\Program Files\Java\jre7\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Users\Anna\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Anna\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files (x86)\Common Files\Acronis\SnapAPI;C:\Program Files (x86)\Skype\Phone;C:\Program Files\nodejs;C:\Project\infra\maven\bin;C:\Windows\System32;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\Anna\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;.
+θών 14, 2017 4:14:15 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+θών 14, 2017 4:14:15 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+θών 14, 2017 4:14:15 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1002 ms
+θών 14, 2017 4:14:16 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+θών 14, 2017 4:14:16 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.78
+θών 14, 2017 4:14:16 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Project\infra\tomcat\webapps\docs
+θών 14, 2017 4:14:16 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Project\infra\tomcat\webapps\docs has finished in 779 ms
+θών 14, 2017 4:14:16 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Project\infra\tomcat\webapps\examples
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Project\infra\tomcat\webapps\examples has finished in 556 ms
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Project\infra\tomcat\webapps\helloworld
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Project\infra\tomcat\webapps\helloworld has finished in 81 ms
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Project\infra\tomcat\webapps\host-manager
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Project\infra\tomcat\webapps\host-manager has finished in 70 ms
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Project\infra\tomcat\webapps\manager
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Project\infra\tomcat\webapps\manager has finished in 80 ms
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Project\infra\tomcat\webapps\phonebook
+θών 14, 2017 4:14:17 PM org.apache.catalina.loader.WebappClassLoaderBase validateJarFile
+INFO: validateJarFile(C:\Project\infra\tomcat\webapps\phonebook\WEB-INF\lib\javax.jar) - jar not loaded. See Servlet Spec 3.0, section 10.7.2. Offending class: javax/servlet/Servlet.class
+θών 14, 2017 4:14:17 PM org.apache.catalina.loader.WebappClassLoaderBase validateJarFile
+INFO: validateJarFile(C:\Project\infra\tomcat\webapps\phonebook\WEB-INF\lib\servlet-api-2.5.jar) - jar not loaded. See Servlet Spec 3.0, section 10.7.2. Offending class: javax/servlet/Servlet.class
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Project\infra\tomcat\webapps\phonebook has finished in 235 ms
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Project\infra\tomcat\webapps\ROOT
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Project\infra\tomcat\webapps\ROOT has finished in 50 ms
+θών 14, 2017 4:14:17 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+θών 14, 2017 4:14:17 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+θών 14, 2017 4:14:17 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1936 ms
+θών 14, 2017 4:17:28 PM org.apache.catalina.core.StandardServer await
+WARNING: StandardServer.await: Invalid command '' received

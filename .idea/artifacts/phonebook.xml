@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="phonebook">
+    <output-path>$PROJECT_DIR$/tomcat/webapps/phonebook</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="phonebookservletfull" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="servlet-api-2.5" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/webapp/WEB-INF/web.xml" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/webapp/index.html" />
+    </root>
+  </artifact>
+</component>
