@@ -2,69 +2,101 @@
 <html lang="">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="themes/black-tie/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="css/phonebook.css" />
+    <link rel="stylesheet" type="text/css" href="css/phonebook.css"/>
     <title>Phone book</title>
 </head>
 
 <body>
-<div class="filter-container">
-    <label>Введите текст:
-        <input type="text" class="filter-input"/>
-    </label>
-    <button class="filter-button">Отфильтровать</button>
-    <button class="reset-filter-button">Сбросить фильтр</button>
-</div>
 
 <div class="delete-dialog"></div>
 
 <div class="alert" title="Нет выбранных контактов"></div>
-
-<table class="table-phonebook">
-    <thead>
-    <th><label class="select-all-label"><input type="checkbox" class="select-all" title="Выбрать"/></label></th>
-    <th>№</th>
-    <th>Фамилия</th>
-    <th>Имя</th>
-    <th>Телефон</th>
-    <th>Удалить</th>
-    </thead>
-    <tbody></tbody>
-</table>
-
-<button type="button" class="delete-checked-contact-button">Удалить выбранные</button>
-
-<form class="form">
-    <div>
-        <label>
-            <span class="form-field">Фамилия:</span>
-            <input type="text" class="last-name-input"/>
-            <span class="last-name-error-message "></span>
+<div class="content">
+    <div class="filter-container">
+        <label>Введите текст:
+            <input type="text" class="form-control input-sm" data-bind="value: filteredText"/>
         </label>
+        <button class="btn btn-primary" data-bind="click: filterContact">Отфильтровать</button>
+        <button class="btn btn-primary" data-bind="click: resetFilter">Сбросить фильтр</button>
     </div>
-    <div>
-        <label>
-            <span class="form-field">Имя:</span>
-            <input type="text" class="first-name-input"/>
-            <span class="first-name-error-message"></span>
-        </label>
-    </div>
-    <div>
-        <label>
-            <span class="form-field">Телефон:</span>
-            <input type="text" class="phone-input"/>
-            <span class="phone-error-message"></span>
-        </label>
-    </div>
-    <button type="button" class="add-contact-button">Добавить</button>
-</form>
 
-<script src="js/jquery-3.2.1.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/jquery-confirm.js"></script>
+
+    <table class="table table-bordered contact-table">
+        <thead>
+        <tr>
+            <th>
+                <label class="select-all-label">
+                    <input type="checkbox" title="Выбрать" data-bind="checked: selectAll"/>
+                </label>
+            </th>
+            <th>№</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+            <th>Удалить</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: rows">
+        <tr data-bind="if: shown">
+            <td>
+                <label class="select-me-label">
+                    <input type="checkbox" class="select-me" data-bind="checked: checked"/>
+                </label>
+            </td>
+            <td data-bind="text: number"></td>
+            <td data-bind="text: lastName"></td>
+            <td data-bind="text: firstName"></td>
+            <td data-bind="text: phone"></td>
+            <td>
+                <button class='btn btn-primary' type='button' data-bind="click: $root.deleteContact">Удалить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary" data-bind="click: deleteSelectedContact">Удалить выбранные</button>
+
+    <form class="form">
+        <div>
+            <label class="form-label">
+                <span class="form-field">Фамилия:</span>
+                <input type="text" class="form-control input-sm form-input"
+                       data-bind="value: lastName, css: { 'input-error': lastNameError().error && validation }"/>
+                <span class="error-message" data-bind="text: lastNameError().message, visible: validation"></span>
+            </label>
+        </div>
+        <div>
+            <label class="form-label">
+                <span class="form-field">Имя:</span>
+                <input type="text" class="form-control input-sm form-input"
+                       data-bind="value: firstName, css: { 'input-error': firstNameError().error && validation }"/>
+                <span class="error-message" data-bind="text: firstNameError().message, visible: validation"></span>
+            </label>
+        </div>
+        <div>
+            <label class="form-label">
+                <span class="form-field">Телефон:</span>
+                <input type="number" class="form-control input-sm form-input"
+                       data-bind="value: phone,  css: { 'input-error': phoneError().error && validation}"/>
+                <span class="error-message" data-bind="text: phoneError().message, visible: validation"></span>
+            </label>
+        </div>
+        <button type="button" class="btn btn-primary" data-bind="click: addContact">Добавить</button>
+    </form>
+
+</div>
+<script src="js/libs/jquery-3.2.1.js"></script>
+<script src="js/libs/jquery-ui.js"></script>
+<script src="js/libs/jquery-confirm.js"></script>
+<script src="js/libs/bootstrap.min.js"></script>
+<script src="js/libs/underscore-min.js"></script>
+<script src="js/libs/knockout-latest.js"></script>
 <script src="js/phonebook.js"></script>
 </body>
 </html>
