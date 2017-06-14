@@ -1,1 +1,70 @@
-dfdfdfd555
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="themes/black-tie/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/phonebook.css" />
+    <title>Phone book</title>
+</head>
+
+<body>
+<div class="filter-container">
+    <label>Введите текст:
+        <input type="text" class="filter-input"/>
+    </label>
+    <button class="filter-button">Отфильтровать</button>
+    <button class="reset-filter-button">Сбросить фильтр</button>
+</div>
+
+<div class="delete-dialog"></div>
+
+<div class="alert" title="Нет выбранных контактов"></div>
+
+<table class="table-phonebook">
+    <thead>
+    <th><label class="select-all-label"><input type="checkbox" class="select-all" title="Выбрать"/></label></th>
+    <th>№</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Удалить</th>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<button type="button" class="delete-checked-contact-button">Удалить выбранные</button>
+
+<form class="form">
+    <div>
+        <label>
+            <span class="form-field">Фамилия:</span>
+            <input type="text" class="last-name-input"/>
+            <span class="last-name-error-message "></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            <span class="form-field">Имя:</span>
+            <input type="text" class="first-name-input"/>
+            <span class="first-name-error-message"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            <span class="form-field">Телефон:</span>
+            <input type="text" class="phone-input"/>
+            <span class="phone-error-message"></span>
+        </label>
+    </div>
+    <button type="button" class="add-contact-button">Добавить</button>
+</form>
+
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery-confirm.js"></script>
+<script src="js/phonebook.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+.table-phonebook{
+    border-collapse: collapse;
+    width: 600px;
+}
+
+.table-phonebook td, .table-phonebook th, .filtered-phonebook td, .filtered-phonebook th{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.form{
+    margin-top: 20px;
+}
+
+.form input {
+    width: 200px;
+    height: 15px;
+}
+
+.form-field{
+    display: inline-block;
+    width: 70px;
+}
+
+.form label {
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.delete-checked-contact-button{
+    margin-top: 10px;
+    margin-left: 460px;
+}
+
+.select-all-label{
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+
+.select-all{
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+}
+
+.select-me-label{
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+    text-align: center; /* center checkbox horizontally */
+    vertical-align: middle; /* center checkbox vertically */
+}
+
+.filter-container{
+    margin-bottom: 10px;
+}
+
+.check-contact{
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+}
+
+.error-message {
+    color: red;
+}
+
+.input-error {
+    border: 1px solid red;
+    padding: 2px 1px;
+}
