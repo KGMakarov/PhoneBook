@@ -49,22 +49,26 @@ public class PhoneBookService {
         contactValidation.setValid(true);
         if (contact.getFirstName().isEmpty()) {
             contactValidation.setValid(false);
-            contactValidation.setFirstNameError("Имя должно быть не пустым");
+            contactValidation.setError("Имя должно быть не пустым");
+            return contactValidation;
         }
 
         if (contact.getLastName().isEmpty()) {
             contactValidation.setValid(false);
-            contactValidation.setLastNameError("Фамилия должно быть не пустым");
+            contactValidation.setError("Фамилия должно быть не пустым");
+            return contactValidation;
         }
 
         if (contact.getPhone().isEmpty()) {
             contactValidation.setValid(false);
-            contactValidation.setPhoneError("Телефон должно быть не пустым");
+            contactValidation.setError("Телефон должно быть не пустым");
+            return contactValidation;
         }
 
         if (isExistContactWithPhone(contact.getPhone())) {
             contactValidation.setValid(false);
-            contactValidation.setPhoneError("Телефон должно быть уникальным");
+            contactValidation.setError("Телефон должно быть уникальным");
+            return contactValidation;
         }
         return contactValidation;
     }

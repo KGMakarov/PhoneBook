@@ -22,6 +22,8 @@ function PhoneBookModel() {
 
     self.validation = ko.observable(false);
 
+    self.serverValidation = ko.observable(false);
+
     self.firstName = ko.observable("");
     self.lastName = ko.observable("");
     self.phone = ko.observable("");
@@ -92,6 +94,8 @@ function PhoneBookModel() {
         };
     });
 
+    self.serverError = ko.observable("");
+
     self.hasError = ko.computed(function () {
         return self.lastNameError().error || self.firstNameError().error || self.phoneError().error;
     });
@@ -115,8 +119,14 @@ function PhoneBookModel() {
 
     // Operations
     self.addContact = function () {
+
         if (self.hasError()) {
             self.validation(true);
+            $.ajax({
+                type: "GET",
+                url: "/phonebook/get/all",
+                success: self.getAllSuccessCallback
+            });
             return;
         }
         var contact = new Contact(self.firstName, self.lastName, self.phone);
@@ -124,14 +134,20 @@ function PhoneBookModel() {
             type: "POST",
             url: "/phonebook/add",
             data: JSON.stringify(contact),
-            success: function(msg){
+            success: function () {
+                self.serverValidation(false);
+            },
+            error: function (ajaxRequest) {
+                var contactValidation = $.parseJSON(ajaxRequest.responseText);
+                self.serverError(contactValidation.error);
+                self.serverValidation(true);
+            },
+            complete: function () {
                 $.ajax({
                     type: "GET",
                     url: "/phonebook/get/all",
                     success: self.getAllSuccessCallback
                 });
-            }, error: function (msg) {
-                alert(msg);
             }
         });
 
@@ -183,13 +199,13 @@ function PhoneBookModel() {
         self.filteredText("");
     }
 
-    self.getAllSuccessCallback = function(msg){
+    self.getAllSuccessCallback = function (msg) {
         var contactListFormServer = $.parseJSON(msg);
         var contactListForClient = self.convertContactList(contactListFormServer);
         self.rows(contactListForClient);
     }
 
-    self.convertContactList = function(contactListFormServer) {
+    self.convertContactList = function (contactListFormServer) {
         var contactListForClient = [];
         contactListFormServer.forEach(function (contact, i) {
             var contactForClient = {

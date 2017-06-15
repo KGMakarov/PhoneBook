@@ -62,6 +62,7 @@
 
     <button type="button" class="btn btn-primary" data-bind="click: deleteSelectedContact">Удалить выбранные</button>
 
+    <span class="error-message" data-bind="text: serverError().message, visible: serverValidation"></span>
     <form class="form">
         <div>
             <label class="form-label">
