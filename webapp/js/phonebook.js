@@ -7,11 +7,11 @@ function Contact(firstName, lastName, phone) {
     this.shown = ko.observable(true);
 }
 
-Contact.prototype.toString = function () {
+contactToString = function (contact) {
     var note = "(";
-    note += this.firstName + ", ";
-    note += this.lastName + ", ";
-    note += this.phone;
+    note += contact.firstName + ", ";
+    note += contact.lastName + ", ";
+    note += contact.phone;
     note += ")";
     return note;
 };
@@ -39,7 +39,7 @@ function PhoneBookModel() {
 
     self.calcTextForDeleteDialog = function (rows) {
         var note = _.map(rows, function (contact) {
-            return contact.toString();
+            return contactToString(contact);
         }).join(", ");
         note = "[" + note + "]";
         return note;
@@ -107,13 +107,11 @@ function PhoneBookModel() {
         if (checkedContactList.length == 0) {
             return "Выберите контакты для удаления.";
         } else if (checkedContactList.length == 1) {
-            return "Вы уверены, что хотите удалить контакт:\r\n" + checkedContactList[0].toString() + "?";
+            return "Вы уверены, что хотите удалить контакт:\r\n" + contactToString(checkedContactList[0]) + "?";
         } else {
             return "Вы уверены, что хотите удалить контакты:\r\n" + self.calcTextForDeleteDialog(checkedContactList) + "?";
         }
     });
-
-    self.idSequence = 0;
 
     // Operations
     self.addContact = function () {
@@ -125,20 +123,17 @@ function PhoneBookModel() {
         $.ajax({
             type: "POST",
             url: "/phonebook/add",
-            data: contact,
+            data: JSON.stringify(contact),
             success: function(msg){
                 $.ajax({
                     type: "GET",
                     url: "/phonebook/get/all",
-                    success: getAllSuccessCallback
+                    success: self.getAllSuccessCallback
                 });
             }, error: function (msg) {
                 alert(msg);
             }
         });
-
-        self.rows.push(contact);
-        self.idSequence++;
 
         self.firstName("");
         self.lastName("");
@@ -147,7 +142,7 @@ function PhoneBookModel() {
     };
 
     self.deleteContact = function (contact) {
-        var content = "Вы уверены, что хотите удалить контакт:\r\n" + contact.toString() + "?";
+        var content = "Вы уверены, что хотите удалить контакт:\r\n" + contactToString(contact) + "?";
         openDeleteDialog("Удалить контакт", content,
             function () {
                 self.rows.remove(contact);
@@ -186,6 +181,29 @@ function PhoneBookModel() {
             contact.shown(true);
         });
         self.filteredText("");
+    }
+
+    self.getAllSuccessCallback = function(msg){
+        var contactListFormServer = $.parseJSON(msg);
+        var contactListForClient = self.convertContactList(contactListFormServer);
+        self.rows(contactListForClient);
+    }
+
+    self.convertContactList = function(contactListFormServer) {
+        var contactListForClient = [];
+        contactListFormServer.forEach(function (contact, i) {
+            var contactForClient = {
+                id: contact.id,
+                firstName: contact.firstName,
+                lastName: contact.lastName,
+                phone: contact.phone,
+                checked: ko.observable(false),
+                shown: ko.observable(true),
+                number: i + 1
+            }
+            contactListForClient.push(contactForClient);
+        });
+        return contactListForClient;
     }
 }
 
@@ -234,32 +252,9 @@ $(document).ready(function () {
     $.ajax({
         type: "GET",
         url: "/phonebook/get/all",
-        success: getAllSuccessCallback
+        success: phoneBookModel.getAllSuccessCallback
     });
 
-
-    function getAllSuccessCallback(msg){
-        var contactListFormServer = $.parseJSON(msg);
-        var contactListForClient = convertContactList(contactListFormServer);
-        phoneBookModel.rows(contactListForClient);
-    }
-
-    function convertContactList(contactListFormServer) {
-        var contactListForClient = [];
-        contactListFormServer.forEach(function (contact, i) {
-            var contactForClient = {
-                id: contact.id,
-                firstName: contact.firstName,
-                lastName: contact.lastName,
-                phone: contact.phone,
-                checked: ko.observable(false),
-                shown: ko.observable(true),
-                number: i + 1
-            }
-            contactListForClient.push(contactForClient);
-        });
-        return contactListForClient;
-    }
 
 });
 

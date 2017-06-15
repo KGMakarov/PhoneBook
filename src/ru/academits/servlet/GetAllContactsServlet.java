@@ -1,6 +1,7 @@
 package ru.academits.servlet;
 
 import ru.academits.PhoneBook;
+import ru.academits.coverter.ContactConverter;
 import ru.academits.model.Contact;
 import ru.academits.service.PhoneBookService;
 
@@ -11,13 +12,14 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class GetAllContactsServlet extends HttpServlet {
-
+    private PhoneBookService phoneBookService = PhoneBook.phoneBookService;
+    private ContactConverter contactConverter = PhoneBook.contactConverter;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            PhoneBookService phoneBookService = PhoneBook.phoneBookService;
             List<Contact> contactList = phoneBookService.getAllContacts();
-            resp.getOutputStream().write(phoneBookService.convertToJson(contactList).getBytes(Charset.forName("UTF-8")));
+            String contactListJson = contactConverter.convertToJson(contactList);
+            resp.getOutputStream().write(contactListJson.getBytes(Charset.forName("UTF-8")));
             resp.getOutputStream().flush();
             resp.getOutputStream().close();
         } catch (Exception e) {

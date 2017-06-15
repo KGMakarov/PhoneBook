@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by Anna on 14.06.2017.
  */
 public class PhoneBookService {
-    private Gson gson = new GsonBuilder().create();
+
     private List<Contact> contactList = new ArrayList();
     private AtomicInteger idSequence = new AtomicInteger(0);
 
@@ -25,19 +25,55 @@ public class PhoneBookService {
         contactList.add(contact);
     }
 
-    public List<Contact> getAllContacts(){
+    public List<Contact> getAllContacts() {
         return contactList;
     }
 
-    public String convertToJson(List<Contact> contactList) {
-        return gson.toJson(contactList);
-    }
 
-    public Contact convertFormJson(String contactJson){
-        return gson.fromJson(contactJson, Contact.class)
-    }
-
-    private int getNewId(){
+    private int getNewId() {
         return idSequence.addAndGet(1);
+    }
+
+    private boolean isExistContactWithPhone(String phone) {
+        for (Contact contact : contactList) {
+            if (contact.getPhone().equals(phone)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ContactValidation validateContact(Contact contact) {
+
+        ContactValidation contactValidation = new ContactValidation();
+        contactValidation.setValid(true);
+        if (contact.getFirstName().isEmpty()) {
+            contactValidation.setValid(false);
+            contactValidation.setFirstNameError("Имя должно быть не пустым");
+        }
+
+        if (contact.getLastName().isEmpty()) {
+            contactValidation.setValid(false);
+            contactValidation.setLastNameError("Фамилия должно быть не пустым");
+        }
+
+        if (contact.getPhone().isEmpty()) {
+            contactValidation.setValid(false);
+            contactValidation.setPhoneError("Телефон должно быть не пустым");
+        }
+
+        if (isExistContactWithPhone(contact.getPhone())) {
+            contactValidation.setValid(false);
+            contactValidation.setPhoneError("Телефон должно быть уникальным");
+        }
+        return contactValidation;
+    }
+
+    public ContactValidation addContact(Contact contact) {
+        ContactValidation contactValidation = validateContact(contact);
+        if (contactValidation.isValid()) {
+            contactList.add(contact);
+        }
+        return contactValidation;
     }
 }
