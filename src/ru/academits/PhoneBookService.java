@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PhoneBookService {
     private Gson gson = new GsonBuilder().create();
     private List<Contact> contactList = new ArrayList();
-    private AtomicInteger idSequence;
+    private AtomicInteger idSequence = new AtomicInteger(0);
 
     {
         Contact contact = new Contact();

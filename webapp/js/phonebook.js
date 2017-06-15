@@ -1,12 +1,11 @@
 // Class to represent a row in the seat reservations grid
-function Contact(id, firstName, lastName, phone, number) {
+function Contact(id, firstName, lastName, phone) {
     this.id = id;
     this.firstName = firstName();
     this.lastName = lastName();
     this.phone = phone();
     this.checked = ko.observable(false);
     this.shown = ko.observable(true);
-    this.number = number;
 }
 
 Contact.prototype.toString = function () {
@@ -216,14 +215,32 @@ function openAlert(title, content, onOk) {
 
 $(document).ready(function () {
     var phoneBookModel = new PhoneBookModel();
-    ko.applyBindings();
+    ko.applyBindings(phoneBookModel);
+
+    function convertContactList(contactListFormServer) {
+        var contactListForClient = [];
+        contactListFormServer.forEach(function (contact, i) {
+            var contactForClient = {
+                id: contact.id,
+                firstName: contact.firstName,
+                lastName: contact.lastName,
+                phone: contact.phone,
+                checked: ko.observable(false),
+                shown: ko.observable(true),
+                number: i + 1
+            }
+            contactListForClient.push(contactForClient);
+        });
+        return contactListForClient;
+    }
 
     $.ajax({
         type: "GET",
         url: "/phonebook/get/all",
         success: function(msg){
-            alert( "Прибыли данные: " + msg );
-            phoneBookModel.rows($.parseJSON(msg));
+            var contactListFormServer = $.parseJSON(msg);
+            var contactListForClient = convertContactList(contactListFormServer);
+            phoneBookModel.rows(contactListForClient);
         }
     });
 });
