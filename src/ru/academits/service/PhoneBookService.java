@@ -49,25 +49,25 @@ public class PhoneBookService {
         contactValidation.setValid(true);
         if (contact.getFirstName().isEmpty()) {
             contactValidation.setValid(false);
-            contactValidation.setError("Имя должно быть не пустым");
+            contactValidation.setError("Поле Имя должно быть заполнено.");
             return contactValidation;
         }
 
         if (contact.getLastName().isEmpty()) {
             contactValidation.setValid(false);
-            contactValidation.setError("Фамилия должно быть не пустым");
+            contactValidation.setError("Поле Фамилия должно быть заполнено.");
             return contactValidation;
         }
 
         if (contact.getPhone().isEmpty()) {
             contactValidation.setValid(false);
-            contactValidation.setError("Телефон должно быть не пустым");
+            contactValidation.setError("Поле Телефон должно быть заполнено.");
             return contactValidation;
         }
 
         if (isExistContactWithPhone(contact.getPhone())) {
             contactValidation.setValid(false);
-            contactValidation.setError("Телефон должно быть уникальным");
+            contactValidation.setError("Номер телефона не должен дублировать другие номера в телефонной книге.");
             return contactValidation;
         }
         return contactValidation;

@@ -28,7 +28,7 @@ function PhoneBookModel() {
     self.lastName = ko.observable("");
     self.phone = ko.observable("");
 
-    self.filteredText = ko.observable("");
+   /* self.filteredText = ko.observable("");
     self.selectAll = ko.observable(false);
 
     self.selectAll.subscribe(function (selectAllValue) {
@@ -45,7 +45,7 @@ function PhoneBookModel() {
         }).join(", ");
         note = "[" + note + "]";
         return note;
-    };
+    };*/
 
     self.firstNameError = ko.computed(function () {
         if (self.firstName()) {
@@ -101,9 +101,9 @@ function PhoneBookModel() {
     });
 
     self.rows = ko.observableArray([]);
-    self.selectedContacts = ko.observableArray([]);
+   /* self.selectedContacts = ko.observableArray([]);*/
 
-    self.textForDeleteDialog = ko.computed(function () {
+    /*self.textForDeleteDialog = ko.computed(function () {
         var checkedContactList = _.filter(self.rows(), function (contact) {
             return contact.checked() && contact.shown();
         });
@@ -115,13 +115,14 @@ function PhoneBookModel() {
         } else {
             return "Вы уверены, что хотите удалить контакты:\r\n" + self.calcTextForDeleteDialog(checkedContactList) + "?";
         }
-    });
+    });*/
 
     // Operations
     self.addContact = function () {
 
         if (self.hasError()) {
             self.validation(true);
+            self.serverValidation(false);
             $.ajax({
                 type: "GET",
                 url: "/phonebook/get/all",
@@ -157,7 +158,7 @@ function PhoneBookModel() {
         self.validation(false);
     };
 
-    self.deleteContact = function (contact) {
+   /* self.deleteContact = function (contact) {
         var content = "Вы уверены, что хотите удалить контакт:\r\n" + contactToString(contact) + "?";
         openDeleteDialog("Удалить контакт", content,
             function () {
@@ -181,9 +182,9 @@ function PhoneBookModel() {
                 }));
             }
         );
-    };
+    };*/
 
-    self.filterContact = function () {
+   /* self.filterContact = function () {
         _.each(self.rows(), function (contact) {
             var hidden = contact.firstName.toLowerCase().indexOf(self.filteredText().toLowerCase()) == -1 &&
                 contact.lastName.toLowerCase().indexOf(self.filteredText().toLowerCase()) == -1 &&
@@ -197,7 +198,7 @@ function PhoneBookModel() {
             contact.shown(true);
         });
         self.filteredText("");
-    }
+    }*/
 
     self.getAllSuccessCallback = function (msg) {
         var contactListFormServer = $.parseJSON(msg);

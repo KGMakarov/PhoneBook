@@ -56,6 +56,11 @@
     color: red;
 }
 
+.server-error-message-container {
+    color: red;
+    margin-top: 40px;
+}
+
 .input-error {
     border: 1px solid red;
     padding: 10px;

@@ -20,10 +20,10 @@
 <div class="content">
     <div class="filter-container">
         <label>Введите текст:
-            <input type="text" class="form-control input-sm" data-bind="value: filteredText"/>
+            <input type="text" class="form-control input-sm"/>
         </label>
-        <button class="btn btn-primary" data-bind="click: filterContact">Отфильтровать</button>
-        <button class="btn btn-primary" data-bind="click: resetFilter">Сбросить фильтр</button>
+        <button class="btn btn-primary">Отфильтровать</button>
+        <button class="btn btn-primary">Сбросить фильтр</button>
     </div>
 
 
@@ -32,7 +32,7 @@
         <tr>
             <th>
                 <label class="select-all-label">
-                    <input type="checkbox" title="Выбрать" data-bind="checked: selectAll"/>
+                    <input type="checkbox" title="Выбрать"/>
                 </label>
             </th>
             <th>№</th>
@@ -46,7 +46,7 @@
         <tr data-bind="if: shown">
             <td>
                 <label class="select-me-label">
-                    <input type="checkbox" class="select-me" data-bind="checked: checked"/>
+                    <input type="checkbox" class="select-me"/>
                 </label>
             </td>
             <td data-bind="text: number"></td>
@@ -54,15 +54,18 @@
             <td data-bind="text: firstName"></td>
             <td data-bind="text: phone"></td>
             <td>
-                <button class='btn btn-primary' type='button' data-bind="click: $root.deleteContact">Удалить</button>
+                <button class='btn btn-primary' type='button'>Удалить</button>
             </td>
         </tr>
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-primary" data-bind="click: deleteSelectedContact">Удалить выбранные</button>
+    <button type="button" class="btn btn-primary">Удалить выбранные</button>
 
-    <span class="error-message" data-bind="text: serverError().message, visible: serverValidation"></span>
+    <br>
+    <div class="server-error-message-container">
+        <span data-bind="text: serverError(), visible: serverValidation"></span>
+    </div>
     <form class="form">
         <div>
             <label class="form-label">
