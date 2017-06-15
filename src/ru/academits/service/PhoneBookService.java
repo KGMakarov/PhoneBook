@@ -1,7 +1,8 @@
-package ru.academits;
+package ru.academits.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import ru.academits.model.Contact;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,12 @@ public class PhoneBookService {
         return contactList;
     }
 
-    public String convert(List<Contact> contactList) {
+    public String convertToJson(List<Contact> contactList) {
         return gson.toJson(contactList);
+    }
+
+    public Contact convertFormJson(String contactJson){
+        return gson.fromJson(contactJson, Contact.class)
     }
 
     private int getNewId(){

@@ -1,6 +1,5 @@
 // Class to represent a row in the seat reservations grid
-function Contact(id, firstName, lastName, phone) {
-    this.id = id;
+function Contact(firstName, lastName, phone) {
     this.firstName = firstName();
     this.lastName = lastName();
     this.phone = phone();
@@ -122,7 +121,22 @@ function PhoneBookModel() {
             self.validation(true);
             return;
         }
-        var contact = new Contact(self.idSequence, self.firstName, self.lastName, self.phone, self.rows().length + 1);
+        var contact = new Contact(self.firstName, self.lastName, self.phone);
+        $.ajax({
+            type: "POST",
+            url: "/phonebook/add",
+            data: contact,
+            success: function(msg){
+                $.ajax({
+                    type: "GET",
+                    url: "/phonebook/get/all",
+                    success: getAllSuccessCallback
+                });
+            }, error: function (msg) {
+                alert(msg);
+            }
+        });
+
         self.rows.push(contact);
         self.idSequence++;
 
@@ -217,6 +231,19 @@ $(document).ready(function () {
     var phoneBookModel = new PhoneBookModel();
     ko.applyBindings(phoneBookModel);
 
+    $.ajax({
+        type: "GET",
+        url: "/phonebook/get/all",
+        success: getAllSuccessCallback
+    });
+
+
+    function getAllSuccessCallback(msg){
+        var contactListFormServer = $.parseJSON(msg);
+        var contactListForClient = convertContactList(contactListFormServer);
+        phoneBookModel.rows(contactListForClient);
+    }
+
     function convertContactList(contactListFormServer) {
         var contactListForClient = [];
         contactListFormServer.forEach(function (contact, i) {
@@ -234,13 +261,5 @@ $(document).ready(function () {
         return contactListForClient;
     }
 
-    $.ajax({
-        type: "GET",
-        url: "/phonebook/get/all",
-        success: function(msg){
-            var contactListFormServer = $.parseJSON(msg);
-            var contactListForClient = convertContactList(contactListFormServer);
-            phoneBookModel.rows(contactListForClient);
-        }
-    });
 });
+

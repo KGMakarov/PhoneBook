@@ -1,4 +1,4 @@
-package ru.academits;
+package ru.academits.model;
 
 /**
  * Created by Anna on 14.06.2017.
