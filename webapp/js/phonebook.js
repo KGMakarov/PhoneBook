@@ -7,14 +7,14 @@ function Contact(firstName, lastName, phone) {
     this.shown = ko.observable(true);
 }
 
-contactToString = function (contact) {
+function contactToString(contact) {
     var note = "(";
     note += contact.firstName + ", ";
     note += contact.lastName + ", ";
     note += contact.phone;
     note += ")";
     return note;
-};
+}
 
 // Overall viewmodel for this screen, along with initial state
 function PhoneBookModel() {
@@ -119,32 +119,29 @@ function PhoneBookModel() {
 
     // Operations
     self.addContact = function () {
-
         if (self.hasError()) {
             self.validation(true);
             self.serverValidation(false);
             return;
         }
+
         var contact = new Contact(self.firstName, self.lastName, self.phone);
         $.ajax({
             type: "POST",
             url: "/phonebook/add",
-            data: JSON.stringify(contact),
-            success: function () {
-                self.serverValidation(false);
-            },
-            error: function (ajaxRequest) {
-                var contactValidation = $.parseJSON(ajaxRequest.responseText);
-                self.serverError(contactValidation.error);
-                self.serverValidation(true);
-            },
-            complete: function () {
-                $.ajax({
-                    type: "GET",
-                    url: "/phonebook/get/all",
-                    success: self.getAllSuccessCallback
-                });
-            }
+            data: JSON.stringify(contact)
+        }).done(function() {
+            self.serverValidation(false);
+        }).fail(function(ajaxRequest) {
+            var contactValidation = $.parseJSON(ajaxRequest.responseText);
+            self.serverError(contactValidation.error);
+            self.serverValidation(true);
+        }).always(function() {
+            $.ajax({
+                type: "GET",
+                url: "/phonebook/get/all",
+                success: self.getAllSuccessCallback
+            });
         });
 
         self.firstName("");
@@ -199,7 +196,7 @@ function PhoneBookModel() {
         var contactListFormServer = $.parseJSON(msg);
         var contactListForClient = self.convertContactList(contactListFormServer);
         self.rows(contactListForClient);
-    }
+    };
 
     self.convertContactList = function (contactListFormServer) {
         var contactListForClient = [];
@@ -212,11 +209,11 @@ function PhoneBookModel() {
                 checked: ko.observable(false),
                 shown: ko.observable(true),
                 number: i + 1
-            }
+            };
             contactListForClient.push(contactForClient);
         });
         return contactListForClient;
-    }
+    };
 }
 
 function openDeleteDialog(title, content, onOk, onCancel) {
@@ -266,7 +263,5 @@ $(document).ready(function () {
         url: "/phonebook/get/all",
         success: phoneBookModel.getAllSuccessCallback
     });
-
-
 });
 

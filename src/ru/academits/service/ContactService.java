@@ -1,40 +1,16 @@
 package ru.academits.service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import ru.academits.PhoneBook;
+import ru.academits.dao.ContactDao;
 import ru.academits.model.Contact;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-
-/**
- * Created by Anna on 14.06.2017.
- */
-public class PhoneBookService {
-
-    private List<Contact> contactList = new ArrayList();
-    private AtomicInteger idSequence = new AtomicInteger(0);
-
-    {
-        Contact contact = new Contact();
-        contact.setId(getNewId());
-        contact.setFirstName("Иван");
-        contact.setLastName("Иванов");
-        contact.setPhone("9123456789");
-        contactList.add(contact);
-    }
-
-    public List<Contact> getAllContacts() {
-        return contactList;
-    }
 
 
-    private int getNewId() {
-        return idSequence.addAndGet(1);
-    }
+public class ContactService {
+    private ContactDao contactDao = PhoneBook.contactDao;
 
     private boolean isExistContactWithPhone(String phone) {
+        List<Contact> contactList = contactDao.getAllContacts();
         for (Contact contact : contactList) {
             if (contact.getPhone().equals(phone)) {
                 return true;
@@ -44,7 +20,6 @@ public class PhoneBookService {
     }
 
     public ContactValidation validateContact(Contact contact) {
-
         ContactValidation contactValidation = new ContactValidation();
         contactValidation.setValid(true);
         if (contact.getFirstName().isEmpty()) {
@@ -76,8 +51,12 @@ public class PhoneBookService {
     public ContactValidation addContact(Contact contact) {
         ContactValidation contactValidation = validateContact(contact);
         if (contactValidation.isValid()) {
-            contactList.add(contact);
+            contactDao.add(contact);
         }
         return contactValidation;
+    }
+
+    public List<Contact> getAllContacts() {
+        return contactDao.getAllContacts();
     }
 }

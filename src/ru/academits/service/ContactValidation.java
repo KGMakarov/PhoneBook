@@ -1,8 +1,5 @@
 package ru.academits.service;
 
-/**
- * Created by Anna on 15.06.2017.
- */
 public class ContactValidation {
     private boolean valid;
     private String error;

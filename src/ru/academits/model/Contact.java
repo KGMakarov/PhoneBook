@@ -1,8 +1,5 @@
 package ru.academits.model;
 
-/**
- * Created by Anna on 14.06.2017.
- */
 public class Contact {
     private int id;
     private String firstName;

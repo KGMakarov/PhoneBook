@@ -3,7 +3,7 @@ package ru.academits.servlet;
 import ru.academits.PhoneBook;
 import ru.academits.coverter.ContactConverter;
 import ru.academits.model.Contact;
-import ru.academits.service.PhoneBookService;
+import ru.academits.service.ContactService;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +12,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class GetAllContactsServlet extends HttpServlet {
-    private PhoneBookService phoneBookService = PhoneBook.phoneBookService;
+    private ContactService phoneBookService = PhoneBook.phoneBookService;
     private ContactConverter contactConverter = PhoneBook.contactConverter;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {

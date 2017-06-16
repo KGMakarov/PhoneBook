@@ -6,9 +6,6 @@ import ru.academits.model.Contact;
 
 import java.util.List;
 
-/**
- * Created by Anna on 15.06.2017.
- */
 public class ContactConverter {
     private Gson gson = new GsonBuilder().create();
 
