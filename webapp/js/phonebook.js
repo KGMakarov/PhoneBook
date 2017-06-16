@@ -123,11 +123,6 @@ function PhoneBookModel() {
         if (self.hasError()) {
             self.validation(true);
             self.serverValidation(false);
-            $.ajax({
-                type: "GET",
-                url: "/phonebook/get/all",
-                success: self.getAllSuccessCallback
-            });
             return;
         }
         var contact = new Contact(self.firstName, self.lastName, self.phone);
